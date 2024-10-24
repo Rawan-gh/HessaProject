@@ -9,11 +9,11 @@ st.markdown("""
         font-family: 'Cairo', sans-serif;
         background-color: #f0f2f6;
     }
-
+    
     .css-1kyxreq {
         text-align: right;
     }
-
+    
     .stButton button {
         background-color: #4CAF50;
         color: white;
@@ -28,7 +28,7 @@ st.markdown("""
         border-radius: 10px;
         transition: background-color 0.3s;
     }
-
+    
     .stButton button:hover {
         background-color: #45a049;
     }
@@ -53,7 +53,7 @@ st.markdown("""
         font-size: 18px;
         direction: rtl;
     }
-
+    
     .css-1aumxhk, .css-qbe2hs {
         font-size: 18px;
         color: #2c3e50;
@@ -66,20 +66,19 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# List of valid links
+# List of valid links (full URLs)
 valid_links = [
-    "https://moi.gov.sa",
-    "https://moh.gov.sa",
-    "https://moe.gov.sa",
-    "https://mc.gov.sa",
-    "https://mlsd.gov.sa",
-    "https://mof.gov.sa",
-    "https://gazt.gov.sa",
-    "https://stats.gov.sa",
-    "https://scth.gov.sa",
-    "https://nafe.gov.sa"
+    "https://www.moi.gov.sa/wps/portal/Home/home/",
+    "https://www.moh.gov.sa/Pages/Default.aspx",
+    "https://www.moe.gov.sa/en/pages/default.aspx",
+    "https://www.mc.gov.sa/en/Pages/default.aspx",
+    "https://www.mlsd.gov.sa/en",
+    "https://www.mof.gov.sa/en/pages/default.aspx",
+    "https://www.gazt.gov.sa/en",
+    "https://www.stats.gov.sa/en",
+    "https://www.scth.gov.sa/en/pages/default.aspx",
+    "https://www.nafe.gov.sa/en"
 ]
-
 
 # Streamlit app
 def main():
@@ -91,14 +90,15 @@ def main():
 
     # Button for validation
     if st.button("تحقق"):
-        if query.lower() in valid_links:
+        # Strip trailing slashes and check against valid links
+        query = query.rstrip('/')
+        if query in [link.rstrip('/') for link in valid_links]:
             st.success("الرابط صالح.")
         else:
             st.error("الرابط غير صالح.")
-
+    
     # Display additional content if needed
-    st.write("مثال على الروابط الصالحة: [وزارة الداخلية](https://moi.gov.sa)")
-
+    st.write("مثال على الروابط الصالحة: [وزارة الداخلية](https://www.moi.gov.sa/wps/portal/Home/home/)")
 
 if __name__ == '__main__':
     main()
