@@ -73,13 +73,13 @@ valid_links = [
     "https://www.moh.gov.sa",
     "https://www.moe.gov.sa",
     "https://www.mc.gov.sa",
-    "https://www.mlsd.gov.sa",
+    "https://www.hrsd.gov.sa",
     "https://www.mof.gov.sa",
-    "https://www.gazt.gov.sa",
+    "https://www.zatca.gov.sa",
     "https://www.stats.gov.sa",
-    "https://www.scth.gov.sa",
-    "https://www.nafe.gov.sa",
-    "https://www.hrsd.gov.sa"  # Added the new domain
+    "https://www.sta.gov.sa",
+    "https://www.iam.gov.sa",
+    
 ]
 
 # Streamlit app
