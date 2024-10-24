@@ -67,7 +67,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# List of valid base URLs (root domains)
+# List of valid base URLs (root domains) with "www." and without it
 valid_links = [
     "https://www.moi.gov.sa",
     "https://www.moh.gov.sa",
@@ -78,7 +78,8 @@ valid_links = [
     "https://www.gazt.gov.sa",
     "https://www.stats.gov.sa",
     "https://www.scth.gov.sa",
-    "https://www.nafe.gov.sa"
+    "https://www.nafe.gov.sa",
+    "https://www.hrsd.gov.sa"  # Added the new domain
 ]
 
 # Streamlit app
