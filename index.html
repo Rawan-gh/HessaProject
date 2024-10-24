@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #message {
+            color: red;
+            margin-top: 10px;
+        }
+        #linksist {
+            background-color: #d4edda;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            max-width: 600px;
+        }
+        a {
+            text-decoration: none;
+            color: #005500;
+            display: block;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function validateLink() {
+            const query = document.querySelector('input[name="query"]').value;
+            const message = document.getElementById('message');
+            message.textContent = '';
+
+            fetch('/validate_link', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'query': query
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                message.textContent = data.message;
+            })
+            .catch(error => {
+                message.textContent = 'Error validating link';
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>تحقق من صحة الرابط</h1>
+
+    <form onsubmit="event.preventDefault(); validateLink();">
+        <input type="text" name="query" required placeholder="أدخل الرابط">
+        <button type="submit">تحقق</button>
+    </form>
+
+    <div id="message"></div>
+</body>
+</html>
