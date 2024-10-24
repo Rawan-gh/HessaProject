@@ -1,4 +1,5 @@
 import streamlit as st
+from urllib.parse import urlparse
 
 # Custom CSS for right-aligned text and styling
 st.markdown("""
@@ -66,18 +67,18 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# List of valid links (full URLs)
+# List of valid base URLs (root domains)
 valid_links = [
-    "https://www.moi.gov.sa/wps/portal/Home/home/",
-    "https://www.moh.gov.sa/Pages/Default.aspx",
-    "https://www.moe.gov.sa/en/pages/default.aspx",
-    "https://www.mc.gov.sa/en/Pages/default.aspx",
-    "https://www.mlsd.gov.sa/en",
-    "https://www.mof.gov.sa/en/pages/default.aspx",
-    "https://www.gazt.gov.sa/en",
-    "https://www.stats.gov.sa/en",
-    "https://www.scth.gov.sa/en/pages/default.aspx",
-    "https://www.nafe.gov.sa/en"
+    "https://www.moi.gov.sa",
+    "https://www.moh.gov.sa",
+    "https://www.moe.gov.sa",
+    "https://www.mc.gov.sa",
+    "https://www.mlsd.gov.sa",
+    "https://www.mof.gov.sa",
+    "https://www.gazt.gov.sa",
+    "https://www.stats.gov.sa",
+    "https://www.scth.gov.sa",
+    "https://www.nafe.gov.sa"
 ]
 
 # Streamlit app
@@ -90,15 +91,16 @@ def main():
 
     # Button for validation
     if st.button("تحقق"):
-        # Strip trailing slashes and check against valid links
-        query = query.rstrip('/')
-        if query in [link.rstrip('/') for link in valid_links]:
+        parsed_url = urlparse(query)
+        base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+
+        if base_url in valid_links:
             st.success("الرابط صالح.")
         else:
             st.error("الرابط غير صالح.")
     
     # Display additional content if needed
-    st.write("مثال على الروابط الصالحة: [وزارة الداخلية](https://www.moi.gov.sa/wps/portal/Home/home/)")
+    st.write("مثال على الروابط الصالحة: [وزارة الداخلية](https://www.moi.gov.sa)")
 
 if __name__ == '__main__':
     main()
