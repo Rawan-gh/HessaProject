@@ -94,7 +94,11 @@ def main():
         parsed_url = urlparse(query)
         base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
 
-        if base_url in valid_links:
+        # Remove "www." prefix if present in both the input and valid links
+        normalized_base_url = base_url.replace("www.", "")
+        normalized_valid_links = [link.replace("www.", "") for link in valid_links]
+
+        if normalized_base_url in normalized_valid_links:
             st.success("الرابط صالح.")
         else:
             st.error("الرابط غير صالح.")
